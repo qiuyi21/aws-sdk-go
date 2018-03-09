@@ -13278,6 +13278,9 @@ type AccessKeyMetadata struct {
 	// The ID for this access key.
 	AccessKeyId *string `min:"16" type:"string"`
 
+	SecurityKey *string `type:"string"`
+	UserId *string `type:"string"`
+
 	// The date when the access key was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
 
@@ -19532,7 +19535,9 @@ type ListAccessKeysInput struct {
 	// This parameter allows (per its regex pattern (http://wikipedia.org/wiki/regex))
 	// a string of characters consisting of upper and lowercase alphanumeric characters
 	// with no spaces. You can also include any of the following characters: =,.@-
-	UserName *string `min:"1" type:"string"`
+	UserName *string `type:"string"`
+
+	AccessKeyId *string `type:"string"`
 }
 
 // String returns the string representation

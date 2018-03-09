@@ -15,6 +15,16 @@ type xmlErrorResponse struct {
 	RequestID string   `xml:"RequestId"`
 }
 
+type xmlErrorResponse2 struct {
+	XMLName xml.Name `xml:"Response"`
+	Errors  []struct {
+		Code    string `xml:"Error>Code"`
+		Message string `xml:"Error>Message"`
+		ErrorNo string `xml:"Error>ErrorNo"`
+	} `xml:"Errors"`
+	RequestID string `xml:"RequestID"`
+}
+
 type xmlServiceUnavailableResponse struct {
 	XMLName xml.Name `xml:"ServiceUnavailableException"`
 }
@@ -35,6 +45,19 @@ func UnmarshalError(r *request.Request) {
 	// First check for specific error
 	resp := xmlErrorResponse{}
 	decodeErr := xml.Unmarshal(bodyBytes, &resp)
+	if decodeErr != nil {
+		resp2 := xmlErrorResponse2{}
+		if err := xml.Unmarshal(bodyBytes, &resp2); err == nil {
+			decodeErr = nil
+			resp.RequestID = resp2.RequestID
+			if errs := resp2.Errors; errs != nil && len(errs) > 0 {
+				if resp.Code = errs[0].Code; resp.Code == "" {
+					resp.Code = errs[0].ErrorNo
+				}
+				resp.Message = errs[0].Message
+			}
+		}
+	}
 	if decodeErr == nil {
 		reqID := resp.RequestID
 		if reqID == "" {
