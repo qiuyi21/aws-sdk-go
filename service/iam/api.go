@@ -22412,6 +22412,9 @@ type ListUsersInput struct {
 	// character (\u007F), including most punctuation characters, digits, and upper
 	// and lowercased letters.
 	PathPrefix *string `min:"1" type:"string"`
+
+	UserId *string `type:"string"`
+	SubuserName *string `type:"string"`
 }
 
 // String returns the string representation
@@ -27508,6 +27511,9 @@ type User struct {
 	//
 	// UserName is a required field
 	UserName *string `min:"1" type:"string" required:"true"`
+
+	AccessKeyId *string `type:"string"`
+	SecretAccessKey *string `type:"string"`
 }
 
 // String returns the string representation
