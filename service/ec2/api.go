@@ -55791,7 +55791,7 @@ type Subnet struct {
 
 	// The number of unused private IPv4 addresses in the subnet. Note that the
 	// IPv4 addresses for any stopped instances are considered unavailable.
-	AvailableIpAddressCount *int64 `locationName:"availableIpAddressCount" type:"integer"`
+	AvailableIpAddressCount *string `locationName:"availableIpAddressCount" type:"string"`
 
 	// The IPv4 CIDR block assigned to the subnet.
 	CidrBlock *string `locationName:"cidrBlock" type:"string"`
@@ -55842,7 +55842,7 @@ func (s *Subnet) SetAvailabilityZone(v string) *Subnet {
 }
 
 // SetAvailableIpAddressCount sets the AvailableIpAddressCount field's value.
-func (s *Subnet) SetAvailableIpAddressCount(v int64) *Subnet {
+func (s *Subnet) SetAvailableIpAddressCount(v string) *Subnet {
 	s.AvailableIpAddressCount = &v
 	return s
 }
