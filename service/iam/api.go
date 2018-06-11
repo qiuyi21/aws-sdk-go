@@ -13280,6 +13280,8 @@ type AccessKeyMetadata struct {
 
 	SecurityKey *string `type:"string"`
 	UserId *string `type:"string"`
+	Arn *string `type:"string"`
+	IsAdmin *bool `type:"boolean"`
 
 	// The date when the access key was created.
 	CreateDate *time.Time `type:"timestamp" timestampFormat:"iso8601"`
