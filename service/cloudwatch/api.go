@@ -2801,6 +2801,8 @@ type GetMetricStatisticsOutput struct {
 
 	// A label for the specified metric.
 	Label *string `type:"string"`
+
+	Period *int64 `type:"integer"`
 }
 
 // String returns the string representation
