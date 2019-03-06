@@ -11,9 +11,9 @@ import (
 var errSSERequiresSSL = awserr.New("ConfigError", "cannot send SSE keys over HTTP.", nil)
 
 func validateSSERequiresSSL(r *request.Request) {
-	if r.HTTPRequest.URL.Scheme == "https" {
+	//if r.HTTPRequest.URL.Scheme == "https" {
 		return
-	}
+	//}
 
 	if iface, ok := r.Params.(sseCustomerKeyGetter); ok {
 		if len(iface.getSSECustomerKey()) > 0 {
