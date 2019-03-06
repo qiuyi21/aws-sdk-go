@@ -1338,6 +1338,10 @@ type CreateFileSystemInput struct {
 	// with a tradeoff of slightly higher latencies for most file operations. This
 	// can't be changed after the file system has been created.
 	PerformanceMode *string `type:"string" enum:"PerformanceMode"`
+
+	Tags []*Tag `type:"list"`
+	Quota *int64 `min:"1" type:"integer"`
+	Name *string `min:"1" type:"string"`
 }
 
 // String returns the string representation
@@ -1413,6 +1417,9 @@ type CreateMountTargetInput struct {
 	//
 	// SubnetId is a required field
 	SubnetId *string `type:"string" required:"true"`
+
+	Number *int64 `type:"integer"`
+	AccessType *string `type:"string"`
 }
 
 // String returns the string representation
@@ -2194,6 +2201,11 @@ type FileSystemDescription struct {
 	//
 	// SizeInBytes is a required field
 	SizeInBytes *FileSystemSize `type:"structure" required:"true"`
+
+	Tags []*Tag `type:"list" required:"true"`
+	LastErrMsg *string `type:"string"`
+	LastErrTime *time.Time `type:"timestamp" timestampFormat:"unix"`
+	Quota *int64  `type:"long"`
 }
 
 // String returns the string representation

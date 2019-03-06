@@ -42629,6 +42629,8 @@ type Instance struct {
 
 	// [EC2-VPC] The ID of the VPC in which the instance is running.
 	VpcId *string `locationName:"vpcId" type:"string"`
+
+	HostAddress *string `locationName:"hostAddress" type:"string"`
 }
 
 // String returns the string representation
@@ -52231,6 +52233,13 @@ type RunInstancesInput struct {
 	// is performed for you, and you can load the text from a file. Otherwise, you
 	// must provide Base64-encoded text.
 	UserData *string `type:"string"`
+
+	InstanceName *string `type:"string"`
+	IsAutoExtendFS *bool `type:"boolean"`
+	StorageId *string `type:"string"`
+	AllowNodes []*string `type:"list"`
+	DenyNodes []*string `type:"list"`
+	Tags []*Tag `locationName:"Tag" type:"list"`
 }
 
 // String returns the string representation
